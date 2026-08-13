@@ -1,0 +1,8 @@
+groq
+pypdf
+python-dotenv
+chromadb
+requests
+beautifulsoup4
+appwrite
+streamlit

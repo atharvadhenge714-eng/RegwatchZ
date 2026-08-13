@@ -1,0 +1,92 @@
+[
+    {
+        "policy_id": "POL-KYC-001",
+        "policy_name": "Know Your Customer (KYC) & Customer Due Diligence Policy",
+        "version": "4.2",
+        "last_updated": "March 2025",
+        "regulatory_reference": "RBI Master Direction – KYC Direction, 2016 (Updated 2024)",
+        "department": "Compliance & Onboarding",
+        "description": "This policy governs customer identification, verification, and ongoing due diligence procedures. All customers undergo Aadhaar-based eKYC through UIDAI integration for minimum KYC accounts with transaction limits of INR 10,000 per month. Full KYC requires PAN verification via NSDL, video KYC as per RBI Video KYC Circular 2020, and CKYC record upload to CERSAI within 10 days. Re-KYC is triggered every 2 years for high-risk and 10 years for low-risk customers. Enhanced Due Diligence (EDD) applies to PEPs, high-value accounts, and non-face-to-face customers. Customer risk categorization follows a three-tier model: Low, Medium, and High risk based on transaction patterns, geography, and product usage."
+    },
+    {
+        "policy_id": "POL-AML-002",
+        "policy_name": "Anti-Money Laundering (AML) & Combating Financing of Terrorism (CFT) Policy",
+        "version": "3.1",
+        "last_updated": "January 2025",
+        "regulatory_reference": "Prevention of Money Laundering Act (PMLA) 2002, RBI Master Direction on KYC 2016",
+        "department": "Compliance & Risk",
+        "description": "This policy establishes the framework for detecting, preventing, and reporting money laundering and terrorist financing activities. Transaction monitoring system flags cash transactions exceeding INR 10 lakh and all suspicious transactions regardless of amount. Suspicious Transaction Reports (STRs) are filed with FIU-IND within 7 days of detection. Cash Transaction Reports (CTRs) for transactions above INR 10 lakh are filed monthly. Customer screening against UNSC sanctions lists, OFAC, and domestic watchlists is performed at onboarding and periodically. Wire transfer compliance ensures originator and beneficiary details accompany all cross-border transactions as per FATF Recommendation 16. Record retention minimum 5 years after business relationship ends. Annual AML training mandatory for all employees."
+    },
+    {
+        "policy_id": "POL-DL-003",
+        "policy_name": "Digital Lending Policy",
+        "version": "2.0",
+        "last_updated": "February 2025",
+        "regulatory_reference": "RBI Guidelines on Digital Lending (September 2022), Fair Practice Code for NBFCs",
+        "department": "Lending & Product",
+        "description": "This policy governs all digital lending operations including loan origination, disbursement, servicing, and recovery conducted through digital channels. All loan disbursements made directly to borrower bank accounts, not through third-party pass-through accounts. Key Fact Statement (KFS) disclosed to borrowers before loan execution containing APR, total cost of credit, recovery and penal charges. FLDG arrangements with lending service providers capped at 5% of the loan portfolio as per RBI September 2023 guidelines. Cooling-off period of minimum 3 days during which borrower can exit without penalty. Credit bureau checks via CIBIL, Experian, and CRIF before loan sanction. Digital loan agreements executed via Aadhaar OTP-based e-sign. Loan recovery follows RBI Fair Practice Code with no coercive practices. Pre-payment and foreclosure allowed without penalty per RBI 2023 circular."
+    },
+    {
+        "policy_id": "POL-PPI-004",
+        "policy_name": "Prepaid Payment Instruments (PPI) Policy",
+        "version": "3.5",
+        "last_updated": "December 2024",
+        "regulatory_reference": "RBI Master Directions on PPIs (August 2021, Updated 2024)",
+        "department": "Payments & Product",
+        "description": "This policy governs issuance and management of semi-closed prepaid payment instruments. Minimum KYC PPIs have maximum balance of INR 10,000 and monthly transaction limit of INR 25,000. Full KYC PPIs allow balance up to INR 2 lakh with interoperability enabled for UPI and bank account transfers. PPI loading via UPI, debit card, and net banking only. Cash withdrawal facility at authorized agents for full KYC PPIs. Dormant PPIs with no activity for 1 year are subject to auto-closure after customer notification. Refund of balance upon closure or expiry within timeframe stipulated by RBI. Monthly transaction reporting to RBI through returns. Merchant PPIs issued with specific usage restrictions and no cash withdrawal."
+    },
+    {
+        "policy_id": "POL-DP-005",
+        "policy_name": "Data Privacy, Protection & Localization Policy",
+        "version": "2.3",
+        "last_updated": "November 2024",
+        "regulatory_reference": "RBI Data Localization Circular (April 2018), Digital Personal Data Protection (DPDP) Act 2023",
+        "department": "IT & Compliance",
+        "description": "This policy governs storage, processing, and protection of all customer personal and financial data. All payment system data stored exclusively within India on AWS Mumbai region servers as per RBI data localization mandate of April 2018. End-to-end encryption with AES-256 at rest and TLS 1.3 in transit. Data retention: transaction records maintained for 10 years per PMLA, KYC records for 5 years post-relationship, and audit logs for 7 years. Customer consent management system implements DPDP Act 2023 requirements for data principal rights including right to access, correction, and erasure. Data Processing Impact Assessment (DPIA) conducted annually. Data breach notification to CERT-In within 6 hours and affected customers within 72 hours. Employee access to customer data requires role-based authorization with complete audit trail."
+    },
+    {
+        "policy_id": "POL-GR-006",
+        "policy_name": "Customer Grievance Redressal Policy",
+        "version": "5.0",
+        "last_updated": "January 2025",
+        "regulatory_reference": "RBI Integrated Ombudsman Scheme (IOS) 2021, RBI Master Circular on Customer Service",
+        "department": "Customer Service & Compliance",
+        "description": "This policy establishes the multi-tier grievance redressal mechanism for all customer complaints. Level 1: Customer support team resolution within 48 hours through call center, email, and in-app chat. Level 2: Escalation to Nodal Officer with resolution deadline of 15 working days per RBI guidelines. Level 3: If unresolved within 30 days, customer can escalate to RBI Ombudsman under IOS 2021. All complaints tracked via unique reference number communicated via SMS and email. Monthly MIS reports on complaints shared with Board and submitted to RBI. TAT monitoring for different complaint categories with board-level review. Grievance redressal officer details displayed prominently on website and app. Compensation policy for delayed resolution per RBI circular on customer compensation."
+    },
+    {
+        "policy_id": "POL-FR-007",
+        "policy_name": "Fraud Risk Management & Cyber Security Policy",
+        "version": "3.8",
+        "last_updated": "October 2024",
+        "regulatory_reference": "RBI Master Direction on IT Framework (2023), RBI Circular on Cyber Security Framework",
+        "department": "Risk & IT Security",
+        "description": "This policy governs fraud detection, prevention, and cyber security controls. Real-time transaction monitoring using rule-based and ML-based anomaly detection. Two-factor authentication mandatory for all financial transactions. Device fingerprinting and geolocation verification for login and transaction authorization. Cooling period of 4 hours for adding new beneficiaries. Velocity checks flag multiple transactions from same device or IP. Daily transaction limits enforced per customer risk category. Suspicious activity reporting to FIU-IND within 7 days. Cyber Security Operations Centre (CSOC) operates 24x7. Vulnerability Assessment and Penetration Testing (VAPT) conducted quarterly. Board-approved cyber crisis management plan with annual BCP/DR drills. ISO 27001 certification maintained. Incident response team activated within 30 minutes of breach detection."
+    },
+    {
+        "policy_id": "POL-UPI-008",
+        "policy_name": "UPI & Payment Gateway Operations Policy",
+        "version": "4.1",
+        "last_updated": "March 2025",
+        "regulatory_reference": "NPCI UPI Procedural Guidelines, RBI Framework for Payment Aggregators (2020)",
+        "department": "Payments & Technology",
+        "description": "This policy governs UPI payment processing, payment aggregation, and settlement operations. UPI transaction limits: INR 1 lakh for P2P, INR 2 lakh for P2M, INR 5 lakh for specific categories (capital markets, medical). UPI Lite enabled for transactions up to INR 500 without PIN. UPI AutoPay for recurring mandates up to INR 15,000 without additional factor authentication. Card tokenization implemented per RBI mandate (October 2022) with no storage of full card number, CVV, or expiry. PCI-DSS Level 1 compliance maintained. Settlement cycle: T+0 for UPI, T+1 for net banking, T+2 for cards. Automated reconciliation with daily bank statement matching. Chargeback and dispute resolution within RBI-prescribed timelines. Merchant onboarding with due diligence per RBI PA/PG framework."
+    },
+    {
+        "policy_id": "POL-NBFC-009",
+        "policy_name": "NBFC Regulatory Compliance & Reporting Policy",
+        "version": "2.7",
+        "last_updated": "December 2024",
+        "regulatory_reference": "RBI Scale Based Regulation for NBFCs (2021), NBFC Master Directions",
+        "department": "Regulatory Compliance",
+        "description": "This policy governs regulatory compliance obligations for NBFC operations under RBI Scale Based Regulation framework. Capital to Risk-weighted Assets Ratio (CRAR) maintained above 15%. Asset classification follows 90-day NPA norms with provisioning per RBI IRAC norms. Quarterly NBS returns filed with RBI covering asset quality, capital adequacy, and ALM position. Monthly ALM statements for liquidity risk monitoring. Fair Practice Code published on website covering loan terms, interest rate methodology, recovery practices, and privacy policy. Board-approved policies reviewed annually for compliance, risk management, and internal audit. Concentration norms: single borrower exposure limited to 15% of owned funds, group exposure to 25%. Connected lending restrictions strictly enforced. Statutory auditor appointed and rotated per RBI guidelines."
+    },
+    {
+        "policy_id": "POL-NOM-010",
+        "policy_name": "Nomination & Customer Account Management Policy",
+        "version": "1.5",
+        "last_updated": "November 2024",
+        "regulatory_reference": "RBI Nomination Facility Directions 2025, Banking Regulation Act Section 45ZA-ZF",
+        "department": "Operations & Customer Service",
+        "description": "This policy governs nomination facilities across all customer accounts and deposit products. Nomination is offered at account opening and customers are informed of their right to nominate. Nomination modification and cancellation facilities available through online and branch channels. For joint accounts, nomination is registered as per survivorship clause. Safe deposit locker nominations follow RBI guidelines with proper documentation. Unclaimed deposits and accounts handling per RBI guidelines with annual review and reporting. Deceased account settlement procedures with proper KYC of claimant and nominee verification. Digital nomination registration via Aadhaar-based authentication. Annual audit of nomination coverage across all account categories."
+    }
+]
