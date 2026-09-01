@@ -27,13 +27,12 @@ for k in ["GROQ_API_KEY", "GROQ_API_KEY_TERTIARY", "GROQ_API_KEY_SECONDARY"]:
 
 # Hardcode fallback keys (valid ones)
 VALID_FALLBACK_KEYS = [
-    "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",
-    "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"
+   API_KEY = "AIza...."
 ]
 
 KEYS_POOL = list(dict.fromkeys(RAW_KEYS + VALID_FALLBACK_KEYS))
 # Remove known invalid keys if present
-KNOWN_BAD_KEYS = {"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"}
+KNOWN_BAD_KEYS = {"API_KEY = "AIza....""}
 KEYS_POOL = [k for k in KEYS_POOL if k not in KNOWN_BAD_KEYS]
 
 if not KEYS_POOL:
