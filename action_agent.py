@@ -4,7 +4,7 @@ import json
 
 def generate_action_plan(parsed_circular: str, affected_policies: list[Any]) -> str:
     """Generate a comprehensive, structured compliance action plan."""
-    print("📋 Generating compliance action plan...")
+    print("[ACTION] Generating compliance action plan...")
 
     # Format affected policies for the AI
     if isinstance(affected_policies, list) and affected_policies:
@@ -112,7 +112,7 @@ Use markdown formatting throughout."""
 
 def generate_gap_analysis(regulation_text: str, policy_text: str) -> str:
     """Generate a focused gap analysis between a regulation and a specific policy."""
-    print("🔍 Generating gap analysis...")
+    print("[ACTION] Generating gap analysis...")
 
     reg_snippet = regulation_text[:2000]
     pol_snippet = policy_text[:2000]
@@ -137,7 +137,7 @@ Be specific and practical."""
 
 def generate_compliance_alert(circular_info: dict[str, Any], comparison: dict[str, Any], company_profile: dict[str, Any]) -> str:
     """Generate a full compliance alert combining circular info, comparison results, and company profile."""
-    print("🚨 Generating compliance alert...")
+    print("[ACTION] Generating compliance alert...")
 
     prompt = f"""You are the Chief Compliance Officer at an Indian fintech/NBFC company. Generate a COMPREHENSIVE compliance alert based on the following analysis.
 
@@ -173,7 +173,7 @@ Use markdown formatting throughout with appropriate emojis."""
 
 def generate_quick_scan(circulars: list[dict[str, Any]], company_profile: dict[str, Any]) -> list[dict[str, Any]]:
     """Quick scan all circulars for relevance to the company profile."""
-    print(f"⚡ Quick scanning {len(circulars)} circulars...")
+    print(f"[ACTION] Quick scanning {len(circulars)} circulars...")
 
     circulars_text = "\n".join(
         f"{i+1}. [{c.get('category', 'RBI')}] {c['title']} — {c.get('summary', '')[:150]}"

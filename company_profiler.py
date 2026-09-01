@@ -1,3 +1,4 @@
+import sys
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -5,6 +6,16 @@ import os
 import json
 from services.ai_service import run_llm_completion, parse_json_safely
 from services.search_service import web_search
+
+# Ensure safe UTF-8 output across all consoles
+if sys.platform == "win32":
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 
 load_dotenv()
 
@@ -16,7 +27,7 @@ HEADERS = {
 
 def search_company(company_name, country="India"):
     """Search for a company and find its website URL."""
-    print(f"🔍 Searching for '{company_name}' in {country}...")
+    print(f"[PROFILER] Searching for '{company_name}' in {country}...")
 
     # For known companies, return direct URLs
     known_companies = {
@@ -49,22 +60,22 @@ def search_company(company_name, country="India"):
     name_lower = company_name.lower().strip()
     for key, url in known_companies.items():
         if key in name_lower or name_lower in key:
-            print(f"✅ Found: {url}")
+            print(f"[PROFILER] Found: {url}")
             return url
 
     # Try live web search
     try:
         results = web_search(f"{company_name} official website home page", max_results=1)
         if results and results[0].get("url"):
-            print(f"✅ Discovered URL via search: {results[0]['url']}")
+            print(f"[PROFILER] Discovered URL via search: {results[0]['url']}")
             return results[0]['url']
     except Exception as e:
-        print(f"⚠️ Search failed: {e}")
+        print(f"[PROFILER] Search notice: {e}")
 
     # Try constructing URL from company name
     clean_name = company_name.lower().replace(" ", "").replace(".", "")
     guessed_url = f"https://www.{clean_name}.com"
-    print(f"🌐 Trying: {guessed_url}")
+    print(f"[PROFILER] Trying: {guessed_url}")
     return guessed_url
 
 
@@ -73,7 +84,7 @@ def scrape_company_website(url):
     if not url or url.startswith("Uploaded"):
         return "No website content."
         
-    print(f"🌐 Scraping {url}...")
+    print(f"[PROFILER] Scraping {url}...")
     all_text = ""
 
     # Pages to scrape
@@ -103,13 +114,13 @@ def scrape_company_website(url):
 
                 if page_text:
                     all_text += f"\n[PAGE: {page_url}]\n{page_text[:1500]}\n"
-                    print(f"  ✅ Scraped: {page_url} ({len(page_text)} chars)")
+                    print(f"  [OK] Scraped: {page_url} ({len(page_text)} chars)")
         except Exception as e:
-            print(f"  ⚠️ Skipped: {page_url} ({e})")
+            print(f"  [SKIP] {page_url} ({e})")
             continue
 
     if not all_text:
-        print("⚠️ Could not scrape website, will use company name for AI analysis")
+        print("[PROFILER] Could not scrape website, will use company name for AI analysis")
         all_text = f"Company: {url}"
 
     return all_text[:6000]
@@ -117,7 +128,7 @@ def scrape_company_website(url):
 
 def build_compliance_profile(company_name, website_text, primary_country="India"):
     """Use AI to build a structured compliance profile from website content."""
-    print("🧠 Building compliance profile with AI...")
+    print("[PROFILER] Building compliance profile with AI...")
 
     prompt = f"""You are a corporate risk and compliance analyst. Analyze this company's website content and build a compliance profile.
 
@@ -162,7 +173,7 @@ Return ONLY the JSON."""
 
 def profile_company(company_name, country="India"):
     """Full pipeline: search → scrape → build profile."""
-    print(f"\n🏢 Building Compliance Profile: {company_name} ({country})")
+    print(f"\n[PROFILER] Building Compliance Profile: {company_name} ({country})")
 
     # Step 1: Find website
     url = search_company(company_name, country)

@@ -10,7 +10,7 @@ profile_collection = chroma_client.get_or_create_collection("company_profile")
 
 def index_company_profile(profile):
     """Index a company profile into ChromaDB for comparison."""
-    print("📊 Indexing company profile in ChromaDB...")
+    print("[MAPPER] Indexing company profile in ChromaDB...")
 
     # Build documents from profile
     documents = []
@@ -60,12 +60,12 @@ def index_company_profile(profile):
         pass
 
     profile_collection.add(documents=documents, metadatas=metadatas, ids=ids)
-    print(f"✅ Indexed {len(documents)} profile items!")
+    print(f"[MAPPER] Indexed {len(documents)} profile items!")
 
 
 def compare_regulation_with_profile(regulation_text, company_profile):
     """Use AI to compare an RBI regulation against company profile and find compliance gaps."""
-    print("🔍 Comparing regulation with company profile...")
+    print("[MAPPER] Comparing regulation with company profile...")
 
     # Semantic search to find relevant profile items
     results = profile_collection.query(

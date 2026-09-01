@@ -1,3 +1,4 @@
+import sys
 import streamlit as st
 import json
 import os
@@ -5,6 +6,17 @@ import tempfile
 import time
 import datetime
 from typing import Any
+
+# Ensure safe UTF-8 output across all consoles
+if sys.platform == "win32":
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 
 from company_profiler import profile_company, build_compliance_profile
 from fetch_agent import fetch_latest_circulars, fetch_circular_text, LATEST_RBI_CIRCULARS
@@ -300,14 +312,6 @@ with st.sidebar:
         st.session_state.current_view = "command_center"
         st.rerun()
         
-    if st.button("📂 Saved Profiles", use_container_width=True):
-        st.session_state.current_view = "saved_profiles"
-        st.rerun()
-        
-    if st.button("🚀 Create New Scan", use_container_width=True):
-        st.session_state.current_view = "company_setup"
-        st.rerun()
-        
     if "company_profile" in st.session_state:
         if st.button("📊 Active Workspace", use_container_width=True, type="primary"):
             st.session_state.current_view = "active_workspace"
@@ -317,7 +321,7 @@ with st.sidebar:
 
     if "company_profile" in st.session_state:
         p: dict[str, Any] = st.session_state.company_profile
-        st.success(f"🏢 **{p['company_name']}**", icon="✅")
+        st.success(f"🏢 **{p.get('company_name', 'Unknown Company')}**", icon="✅")
         st.caption(f"**Primary Country**: {p.get('primary_country', 'India')}")
         st.caption(f"**Type**: {normalize_company_type(p.get('company_type', 'Fintech'))}")
         st.caption(f"**Industry**: {p.get('industry', 'Payments')}")
@@ -365,27 +369,6 @@ if st.session_state.current_view == "command_center":
     col_c1, col_c2 = st.columns(2)
     
     with col_c1:
-        st.markdown(f"""
-        <div class="action-card" style="padding: 24px; min-height: 210px;">
-            <div>
-                <h3 style="margin:0 0 8px 0; color:#818cf8; font-size:1.25rem; font-weight:700; height:2.8rem; display:flex; align-items:center;">📁 SAVED COMPLIANCE PROFILES</h3>
-                <p style="color:#94a3b8; font-size:0.9rem; line-height:1.5; height:3.2rem; overflow:hidden; margin-bottom:12px;">
-                    View and restore previously completed multi-jurisdictional compliance analyses from persistent storage.
-                </p>
-            </div>
-            <div>
-                <div style="font-size:0.95rem; font-weight:700; color:#c084fc;">
-                    📊 {saved_count} Saved Compliance Profile{'s' if saved_count != 1 else ''}
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("")
-        if st.button("View Saved Profiles ➔", key="cc_btn_view_saved", type="primary", use_container_width=True):
-            st.session_state.current_view = "saved_profiles"
-            st.rerun()
-
-    with col_c2:
         st.markdown("""
         <div class="action-card" style="padding: 24px; min-height: 210px;">
             <div>
@@ -404,6 +387,27 @@ if st.session_state.current_view == "command_center":
         st.markdown("")
         if st.button("Create New Scan 🚀", key="cc_btn_create_new", type="primary", use_container_width=True):
             st.session_state.current_view = "company_setup"
+            st.rerun()
+
+    with col_c2:
+        st.markdown(f"""
+        <div class="action-card" style="padding: 24px; min-height: 210px;">
+            <div>
+                <h3 style="margin:0 0 8px 0; color:#818cf8; font-size:1.25rem; font-weight:700; height:2.8rem; display:flex; align-items:center;">📁 SAVED COMPLIANCE PROFILES</h3>
+                <p style="color:#94a3b8; font-size:0.9rem; line-height:1.5; height:3.2rem; overflow:hidden; margin-bottom:12px;">
+                    View and restore previously completed multi-jurisdictional compliance analyses from persistent storage.
+                </p>
+            </div>
+            <div>
+                <div style="font-size:0.95rem; font-weight:700; color:#c084fc;">
+                    📊 {saved_count} Saved Compliance Profile{'s' if saved_count != 1 else ''}
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("")
+        if st.button("View Saved Profiles ➔", key="cc_btn_view_saved", type="primary", use_container_width=True):
+            st.session_state.current_view = "saved_profiles"
             st.rerun()
 
 
@@ -658,7 +662,7 @@ elif st.session_state.current_view == "active_workspace":
         st.rerun()
         
     p_profile = st.session_state.company_profile
-    c_name = p_profile["company_name"]
+    c_name = p_profile.get("company_name", "Unknown Company")
     
     # TOP CONTROL BAR FOR WORKSPACE
     col_w1, col_w2 = st.columns([3, 1])

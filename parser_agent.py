@@ -2,17 +2,17 @@ import pypdf
 from services.ai_service import run_llm_completion, parse_json_safely
 
 def parse_rbi_circular(pdf_path):
-    print("📄 Reading PDF...")
+    print("[PARSER] Reading PDF...")
     try:
         reader = pypdf.PdfReader(pdf_path)
         text = ""
         for page in reader.pages:
             text += page.extract_text()
     except Exception as e:
-        print(f"❌ PDF reading error: {e}")
+        print(f"[PARSER] PDF reading error: {e}")
         return "{}"
 
-    print("🤖 Sending to LLaMA AI...")
+    print("[PARSER] Sending to LLM for analysis...")
 
     prompt = f"""You are an RBI regulatory compliance expert.
 

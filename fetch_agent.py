@@ -102,19 +102,19 @@ LATEST_RBI_CIRCULARS = [
 
 def fetch_latest_circulars(limit=12):
     """Return latest real RBI circulars."""
-    print("🌐 Fetching latest RBI circulars...")
+    print("[FETCH] Fetching latest RBI circulars...")
 
     # Try live scraping first
     try:
         live_circulars = _scrape_rbi_live()
         if live_circulars:
-            print(f"✅ Fetched {len(live_circulars)} circulars live from RBI!")
+            print(f"[FETCH] Fetched {len(live_circulars)} circulars live from RBI!")
             return live_circulars[:limit]
     except Exception as e:
-        print(f"⚠️ Live fetch unavailable: {e}")
+        print(f"[FETCH] Live fetch unavailable: {e}")
 
     # Use verified real circulars
-    print(f"📋 Loading {min(limit, len(LATEST_RBI_CIRCULARS))} verified RBI circulars...")
+    print(f"[FETCH] Loading {min(limit, len(LATEST_RBI_CIRCULARS))} verified RBI circulars...")
     return LATEST_RBI_CIRCULARS[:limit]
 
 
@@ -145,7 +145,7 @@ def _scrape_rbi_live():
 
 def fetch_circular_text(url):
     """Fetch the full text of a specific RBI circular."""
-    print(f"📄 Fetching circular content from RBI...")
+    print(f"[FETCH] Fetching circular content from RBI...")
 
     try:
         response = requests.get(url, headers=HEADERS, timeout=15)
@@ -171,13 +171,13 @@ def fetch_circular_text(url):
             text = content.get_text(separator="\n", strip=True)
             lines = [line.strip() for line in text.split("\n") if line.strip() and len(line.strip()) > 2]
             clean_text = "\n".join(lines)
-            print(f"✅ Fetched {len(clean_text)} characters")
+            print(f"[FETCH] Fetched {len(clean_text)} characters")
             return clean_text[:5000]
 
         return "Could not extract content from this circular."
 
     except Exception as e:
-        print(f"⚠️ Fetch error: {e}")
+        print(f"[FETCH] Fetch error: {e}")
         # Return the summary from our data as fallback
         for c in LATEST_RBI_CIRCULARS:
             if c["url"] == url:
@@ -188,7 +188,7 @@ def fetch_circular_text(url):
 # TEST
 if __name__ == "__main__":
     print("=" * 60)
-    print("🌐 RegWatch Fetch Agent — Real RBI Circulars")
+    print("[FETCH] RegWatch Fetch Agent - Real RBI Circulars")
     print("=" * 60)
 
     circulars = fetch_latest_circulars()
@@ -196,6 +196,6 @@ if __name__ == "__main__":
 
     for i, c in enumerate(circulars, 1):
         print(f"{i}. [{c['date']}] {c['title']}")
-        print(f"   📂 {c['category']}")
-        print(f"   📝 {c['summary'][:100]}")
+        print(f"   Category: {c['category']}")
+        print(f"   Summary: {c['summary'][:100]}")
         print()

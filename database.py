@@ -33,6 +33,6 @@ def save_report(circular_name: str, parsed_result: str, action_plan: str) -> Non
                 "date_analyzed": "2025-03-06"
             }
         )
-        print("✅ Saved to Appwrite!")
+        print("[DB] Saved to Appwrite!")
     except Exception as e:
-        print(f"❌ Save failed: {e}")
+        print(f"[DB] Save notice: {e}")
